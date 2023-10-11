@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const path = require("path");
-const users = require("./routes/api/1.0/users")
 
 app.use(express.json());
 
@@ -25,12 +24,12 @@ const loadRoutes = (directory) => {
 
     //Determining the base route from the filename (e.g., user.js should become api/1.0/user)
     const filePoint = `${path.basename(file, ".js")}`;
-    const endPoint = baseRoute + '/' +filePoint;
+    const endPoint = "/" + baseRoute + "/" + filePoint + "/";
     console.log(endPoint);
     app.use(endPoint, route);
   });
 };
-app.get("/api/1.0/user/", users);
-// loadRoutes(path.join(__dirname, "routes/api/1.0"));
+// app.use("/api/1.0/users/", users);
+loadRoutes(path.join(__dirname, "routes/api/1.0"));
 
 module.exports = app;
