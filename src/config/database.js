@@ -6,7 +6,8 @@ const sequelize = new Sequlize(
   {
     dialect: "sqlite",
     storage: "./database.sqlite",
-  }
+    logging: false,
+  },
 );
 
 module.exports = sequelize;
