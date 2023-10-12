@@ -8,8 +8,9 @@ const registerUser = async (req, res) => {
     await User.create(user);
     return res.status(201).send({ message: "User Created" });
   } catch (e) {
-    // console.log(e.errors);
-    return res.status(400).send({ validationErrors: {} });
+    console.log(e.errors);
+    //TODO Get all the error messages.
+    return res.status(400).send({ validationErrors: e.errors });
   }
 };
 
