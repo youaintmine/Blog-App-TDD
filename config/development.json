@@ -1,0 +1,10 @@
+{
+    "database" : {
+        "database": "bloggram",
+        "username": "bloggram-username",
+        "password": "bloggram-password",
+        "dialect": "sqlite",
+        "storage": "./database.sqlite",
+        "logging": false
+    }
+}

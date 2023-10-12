@@ -1,13 +1,16 @@
 const Sequlize = require("sequelize");
+const config = require('config');
+
+const dbConfig = config.get('database')
+
 const sequelize = new Sequlize(
-  "bloggram",
-  "bloggram-username",
-  "bloggram-password",
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password,
   {
-    dialect: "sqlite",
-    storage: "./database.sqlite",
-    logging: false,
-  },
-);
+    dialect: dbConfig.dialect,
+    storage: dbConfig.storage,
+    logging: dbConfig.logging,
+  });
 
 module.exports = sequelize;

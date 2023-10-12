@@ -25,7 +25,6 @@ const loadRoutes = (directory) => {
     //Determining the base route from the filename (e.g., user.js should become api/1.0/user)
     const filePoint = `${path.basename(file, ".js")}`;
     const endPoint = "/" + baseRoute + "/" + filePoint + "/";
-    console.log(endPoint);
     app.use(endPoint, route);
   });
 };
