@@ -7,8 +7,9 @@ const registerUser = async (req, res) => {
     const user = { ...req.body, password: hash };
     await User.create(user);
     return res.status(201).send({ message: "User Created" });
-  } catch (error) {
-    res.status(400).send({ error: error.message });
+  } catch (e) {
+    // console.log(e.errors);
+    return res.status(400).send({ validationErrors: {} });
   }
 };
 
