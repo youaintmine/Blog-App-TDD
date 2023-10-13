@@ -12,17 +12,16 @@ beforeEach(() => {
 });
 
 const validUser = {
-  username: 'user1',
-  email: 'user1@mail.com',
-  password: 'Pa55word'
-}
+  username: "user1",
+  email: "user1@mail.com",
+  password: "Pa55word",
+};
 
 const postUser = (user = validUser) => {
   return request(app).post("/api/1.0/users").send(user);
 };
 
 describe("User registration", () => {
-
   it("returns 201 OK when signup request is valid", async () => {
     const response = await postUser();
     expect(response.status).toBe(201);
@@ -81,7 +80,34 @@ describe("User registration", () => {
       password: "P4ssword",
     });
     const body = response.body;
-    console.log(body);
-    expect(body.validationErrors[0].message).toBe("Username cannot be empty");
+    // console.log(body);
+    expect(body.validationErrors.username).toBe("Username cannot be null");
+  });
+
+  it("returns E-mail cannot be null", async () => {
+    const response = await postUser({
+      username: "user1",
+      email: null,
+      password: "P4ssword",
+    });
+    const body = response.body;
+    // console.log(body);
+    expect(body.validationErrors.email).toBe("E-mail cannot be null");
+  });
+
+  it("returns username and E-mail cannot be null", async () => {
+    const response = await postUser({
+      username: null,
+      email: null,
+      password: "P4ssword",
+    });
+    const body = response.body;
+    /*
+      validationErrors = {
+        username: "...",
+        email: "..."
+      }
+    */
+    expect(Object.keys(body.validationErrors)).toEqual(["username", "email"]);
   });
 });
