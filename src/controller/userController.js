@@ -10,6 +10,11 @@ const registerUser = async (req, res) => {
   }
 };
 
+const findByEmail = async (email) => {
+  return await UserService.findByEmail(email);
+};
+
 module.exports = {
   registerUser,
+  findByEmail,
 };

@@ -3,7 +3,6 @@ const userController = require("../../../controller/userController");
 const router = express.Router();
 
 const { check, validationResult } = require("express-validator");
-const User = require("../../../model/User");
 
 router.post(
   "/",
@@ -20,7 +19,7 @@ router.post(
     .isEmail()
     .withMessage("E-mail is not valid")
     .custom(async (email) => {
-      const user = await User.findOne({ where: { email: email } });
+      const user = await userController.findByEmail(email);
       if (user) {
         throw new Error("E-mail in use");
       }
