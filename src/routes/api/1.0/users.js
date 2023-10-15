@@ -50,4 +50,12 @@ router.post(
   userController.registerUser,
 );
 
+router.post(
+  "/token/:token",
+  async (req, res, next) => {
+    next();
+  },
+  userController.activate,
+);
+
 module.exports = router;
