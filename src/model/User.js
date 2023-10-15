@@ -9,21 +9,12 @@ User.init(
   {
     username: {
       type: Sequelize.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Username cannot be empty",
-        },
-      },
     },
     email: {
       type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
     },
     password: {
       type: Sequelize.STRING,
-      allowNull: false,
     },
     inactive: {
       type: Sequelize.BOOLEAN,
@@ -31,8 +22,7 @@ User.init(
     },
     activationToken: {
       type: Sequelize.STRING,
-      
-    }
+    },
   },
   {
     sequelize,

@@ -49,11 +49,9 @@ const activateAccount = async (token) => {
     console.log("Invalid Token is sent");
     throw new InvalidTokenException();
   }
-  console.log("Correct Token is sent");
   user.inactive = false;
   user.activationToken = null;
   await user.save();
-  console.log("User is being saved");
 };
 
 module.exports = { save, findByEmail, activateAccount };

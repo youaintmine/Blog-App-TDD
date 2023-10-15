@@ -21,7 +21,7 @@ router.post(
     .custom(async (email) => {
       const user = await userController.findByEmail(email);
       if (user) {
-        throw new Error("E-mail in use");
+        throw new Error();
       }
     })
     .withMessage("E-mail in use"),
@@ -50,9 +50,11 @@ router.post(
   userController.registerUser,
 );
 
+
 router.post(
   "/token/:token",
   async (req, res, next) => {
+    console.log(req);
     next();
   },
   userController.activate,
