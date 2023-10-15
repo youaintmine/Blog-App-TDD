@@ -25,6 +25,14 @@ User.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    inactive: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+    },
+    activationToken: {
+      type: Sequelize.STRING,
+      
+    }
   },
   {
     sequelize,

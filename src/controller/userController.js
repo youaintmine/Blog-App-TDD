@@ -5,8 +5,7 @@ const registerUser = async (req, res) => {
     await UserService.save(req.body);
     return res.status(201).send({ message: "User Created" });
   } catch (e) {
-    console.log(e);
-    throw new Error("User creation failed");
+    return res.status(502).send({ message: e.message });
   }
 };
 
